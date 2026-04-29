@@ -1,3 +1,30 @@
 [gd_scene format=3 uid="uid://bgkf3rucm1m58"]
 
+[ext_resource type="PackedScene" uid="uid://ocs7bnbgejbj" path="res://Models/Frog.fbx" id="2_cojph"]
+[ext_resource type="PackedScene" uid="uid://fer6sta33xrv" path="res://Player.tscn" id="2_p7lbm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f3bkm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3h184"]
+size = Vector3(1.960083, 0.020324707, 2.0111237)
+
 [node name="Sandbox" type="Node3D" unique_id=1821652103]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1751121441]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=217151040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.9604645e-08, 0)
+mesh = SubResource("PlaneMesh_f3bkm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1576779951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004333496, -0.0005187988, 0.0049209595)
+shape = SubResource("BoxShape3D_3h184")
+
+[node name="Frog" parent="." unique_id=136121617 instance=ExtResource("2_cojph")]
+transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.16, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=355247300]
+transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.6467898, 0, 9.131599, 7.9135866)
+
+[node name="Player" parent="." unique_id=547382021 instance=ExtResource("2_p7lbm")]
+RotationSpeed = 1.0
