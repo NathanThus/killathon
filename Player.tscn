@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://brli43c103t8s" path="res://PlayerRotation.cs" id="1_birkk"]
 [ext_resource type="Script" uid="uid://dlyaqval572re" path="res://PlayerController.cs" id="2_74g7g"]
+[ext_resource type="Texture2D" uid="uid://b544cpgley21j" path="res://Images/Crosshairs/crosshair148.png" id="3_e80uo"]
+[ext_resource type="Script" uid="uid://ccnlgyhkmweme" path="res://MouseZoom.cs" id="3_kne1u"]
 
 [node name="Player" type="Node3D" unique_id=547382021 node_paths=PackedStringArray("RotationTarget", "OffsetTarget")]
 script = ExtResource("1_birkk")
@@ -17,3 +19,38 @@ Target = NodePath(".")
 
 [node name="Camera3D" type="Camera3D" parent="Offset/Camera Holder" unique_id=1485748189]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="Control" type="Control" parent="Offset/Camera Holder/Camera3D" unique_id=1574790422]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Offset/Camera Holder/Camera3D/Control" unique_id=333485187]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Offset/Camera Holder/Camera3D/Control/AspectRatioContainer" unique_id=265319881]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Offset/Camera Holder/Camera3D/Control/AspectRatioContainer/CenterContainer" unique_id=1376923251]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Offset/Camera Holder/Camera3D/Control/AspectRatioContainer/CenterContainer/Control" unique_id=1564696686]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_e80uo")
+
+[node name="MouseZoom" type="Node" parent="Offset/Camera Holder" unique_id=443150169 node_paths=PackedStringArray("playerCamera")]
+script = ExtResource("3_kne1u")
+playerCamera = NodePath("../Camera3D")
