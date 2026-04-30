@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://fer6sta33xrv"]
+
+[ext_resource type="Script" uid="uid://brli43c103t8s" path="res://PlayerRotation.cs" id="1_birkk"]
+[ext_resource type="Script" uid="uid://dlyaqval572re" path="res://PlayerController.cs" id="2_74g7g"]
+
+[node name="Player" type="Node3D" unique_id=547382021]
+script = ExtResource("1_birkk")
+
+[node name="Offset" type="Node3D" parent="." unique_id=2123923717]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1, 1)
+
+[node name="Camera Holder" type="Node3D" parent="Offset" unique_id=1817132634 node_paths=PackedStringArray("Target")]
+script = ExtResource("2_74g7g")
+Target = NodePath(".")
+
+[node name="Camera3D" type="Camera3D" parent="Offset/Camera Holder" unique_id=1485748189]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
