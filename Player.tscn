@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://fer6sta33xrv"]
 
-[ext_resource type="Script" uid="uid://brli43c103t8s" path="res://PlayerRotation.cs" id="1_birkk"]
-[ext_resource type="Script" uid="uid://dlyaqval572re" path="res://PlayerController.cs" id="2_74g7g"]
+[ext_resource type="Script" uid="uid://brli43c103t8s" path="res://Scripts/Player Controls/PlayerRotation.cs" id="1_birkk"]
+[ext_resource type="Script" uid="uid://dlyaqval572re" path="res://Scripts/Player Controls/PlayerController.cs" id="2_74g7g"]
 [ext_resource type="Texture2D" uid="uid://b544cpgley21j" path="res://Images/Crosshairs/crosshair148.png" id="3_e80uo"]
-[ext_resource type="Script" uid="uid://ccnlgyhkmweme" path="res://MouseZoom.cs" id="3_kne1u"]
+[ext_resource type="Script" uid="uid://ccnlgyhkmweme" path="res://Scripts/Player Controls/MouseZoom.cs" id="3_kne1u"]
 
 [node name="Player" type="Node3D" unique_id=547382021 node_paths=PackedStringArray("RotationTarget", "OffsetTarget")]
 script = ExtResource("1_birkk")
