@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape3D_a6abg")
 [node name="Weapon" type="Node" parent="." unique_id=748967472]
 
 [node name="Model" type="Node3D" parent="." unique_id=1641681179]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.28, 0)
 
 [node name="Frog" parent="Model" unique_id=136121617 instance=ExtResource("1_a6abg")]
 
