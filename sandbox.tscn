@@ -13,20 +13,38 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=355247300]
 transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.6467898, 0, 9.131599, 7.9135866)
 
-[node name="Enemy Spawn Point" type="Node" parent="." unique_id=170884201 node_paths=PackedStringArray("SpawnPoint", "Target", "SpawnDelayTimer")]
+[node name="Enemy Spawn Point" type="Node" parent="." unique_id=170884201 node_paths=PackedStringArray("SpawnPoints", "Target")]
 script = ExtResource("1_3h184")
-SpawnPoint = NodePath("SpawnPoint")
+SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
 Target = NodePath("Target")
-SpawnLimit = 4
-SpawnDelayTimer = NodePath("SpawnDelay")
+SpawnLimit = 500
+SpawnDelayTimeMilliSeconds = 10
 
 [node name="SpawnPoint" type="Node3D" parent="Enemy Spawn Point" unique_id=1296174047]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1650009, -8.906477)
 
-[node name="Target" type="Node3D" parent="Enemy Spawn Point" unique_id=1419391182]
+[node name="SpawnPoint2" type="Node3D" parent="Enemy Spawn Point" unique_id=715152969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.260187, 1.1650009, -8.906477)
 
-[node name="SpawnDelay" type="Timer" parent="Enemy Spawn Point" unique_id=69737903]
-wait_time = 0.3
+[node name="SpawnPoint3" type="Node3D" parent="Enemy Spawn Point" unique_id=1929496657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.500926, 1.1650009, -8.906477)
+
+[node name="SpawnPoint4" type="Node3D" parent="Enemy Spawn Point" unique_id=1519295354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.500926, 1.1650009, -0.6360378)
+
+[node name="SpawnPoint5" type="Node3D" parent="Enemy Spawn Point" unique_id=320015340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.500926, 1.1650009, 8.29494)
+
+[node name="SpawnPoint6" type="Node3D" parent="Enemy Spawn Point" unique_id=63400655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4538021, 1.1650009, 8.29494)
+
+[node name="SpawnPoint7" type="Node3D" parent="Enemy Spawn Point" unique_id=955652294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36611, 1.1650009, 8.29494)
+
+[node name="SpawnPoint8" type="Node3D" parent="Enemy Spawn Point" unique_id=1592433067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36611, 1.1650009, -0.53438854)
+
+[node name="Target" type="Node3D" parent="Enemy Spawn Point" unique_id=1419391182]
 
 [node name="Environment" type="NavigationRegion3D" parent="." unique_id=1720359773]
 navigation_mesh = SubResource("NavigationMesh_3h184")
