@@ -29,6 +29,7 @@ public partial class ZombieLogic : CharacterBody3D
 
         this.Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * _movementSpeed;
         MoveAndSlide();
+        LookAt(Vector3.Zero);
     }
 
 }
