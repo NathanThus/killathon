@@ -1,7 +1,9 @@
+using System;
 using Godot;
 
 public partial class ZombieLogic : CharacterBody3D
 {
+    public event Action<ZombieLogic> OnDeath;
     [Export]
     public NavigationAgent3D _navigationAgent {get; set;}
     public float _movementSpeed { get; set; } = 2.0f;
@@ -18,7 +20,7 @@ public partial class ZombieLogic : CharacterBody3D
 
         if (_navigationAgent.IsNavigationFinished())
         {
-            // Send Alert
+            OnDeath?.Invoke(this);
             QueueFree();
         }
 
