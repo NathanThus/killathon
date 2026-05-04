@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public partial class EnemyManager : Node
 {
 	[Export]
-	public Node3D SpawnPoint { get; set; }
+	public Node3D[] SpawnPoints { get; set; }
 	[Export]
 	public Node3D Target { get; set; }
 	[Export]
@@ -13,7 +13,11 @@ public partial class EnemyManager : Node
 	[Export]
 	public int SpawnCount { get; set; }
 	[Export]
-	public int SpawnDelayTimeMilliSeconds {get; set;} = 500;
+	public int SpawnDelayTimeMilliSeconds { get; set; } = 500;
+	[Export]
+	public int UpdateTimer { get; set; } = 2000;
+
+	private bool isSpawning = false;
 
 	private readonly PackedScene template = GD.Load<PackedScene>("res://BaseEnemy.tscn");
 	public override void _Ready()
@@ -23,22 +27,40 @@ public partial class EnemyManager : Node
 
 	private async void SpawnZombie()
 	{
-		if (SpawnCount < SpawnLimit)
+		while (true)
 		{
-			for (int i = SpawnCount; i < SpawnLimit; i++)
+			if (SpawnCount < SpawnLimit && !isSpawning)
 			{
-				var instance = template.Instantiate<ZombieLogic>();
-				AddChild(instance);
-				instance.Position = SpawnPoint.Position;
-				instance.MovementTarget = Target.Position;
-				SpawnCount++;
-				await Task.Delay(SpawnDelayTimeMilliSeconds);
+				isSpawning = true;
+				for (int i = SpawnCount; i < SpawnLimit; i++)
+				{
+					var instance = template.Instantiate<ZombieLogic>();
+					AddChild(instance);
+					instance.Position = GetSpawnPosition();
+					instance.MovementTarget = Target.Position;
+					instance.OnDeath += HandleEnemyDeath;
+					SpawnCount++;
+					await Task.Delay(SpawnDelayTimeMilliSeconds);
+				}
+				isSpawning = false;
 			}
+			GD.Print("Bing");
+
+			await Task.Delay(UpdateTimer);
 		}
 	}
 
-	private void OnEnemyDeath()
+	private int index;
+	private Vector3 GetSpawnPosition()
 	{
-		// Stop listening to event
+		index++;
+		if (index >= SpawnPoints.Length) index = 0;
+		return SpawnPoints[index].Position;
+	}
+
+	private void HandleEnemyDeath(ZombieLogic instance)
+	{
+		instance.OnDeath -= HandleEnemyDeath;
+		SpawnCount--;
 	}
 }
