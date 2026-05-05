@@ -44,7 +44,6 @@ public partial class EnemyManager : Node
 				}
 				isSpawning = false;
 			}
-			GD.Print("Bing");
 
 			await Task.Delay(UpdateTimer);
 		}
