@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bgkf3rucm1m58"]
 
 [ext_resource type="Script" uid="uid://misco6eihy4r" path="res://Scripts/Enemy/EnemyManager.cs" id="1_3h184"]
+[ext_resource type="PackedScene" path="res://Player.tscn" id="2_cojph"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3h184"]
-vertices = PackedVector3Array(-9.5, 0.5, -9.5, -9.5, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, -9.5)
+vertices = PackedVector3Array(-29.5, 0.5, -29.5, -29.5, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, -29.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3h184"]
@@ -18,31 +19,31 @@ script = ExtResource("1_3h184")
 SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
 Target = NodePath("Target")
 SpawnLimit = 500
-SpawnDelayTimeMilliSeconds = 10
+SpawnDelayTimeMilliSeconds = 20
 
 [node name="SpawnPoint" type="Node3D" parent="Enemy Spawn Point" unique_id=1296174047]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1650009, -8.906477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1650009, -28.906477)
 
 [node name="SpawnPoint2" type="Node3D" parent="Enemy Spawn Point" unique_id=715152969]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.260187, 1.1650009, -8.906477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.260187, 1.1650009, -27.906477)
 
 [node name="SpawnPoint3" type="Node3D" parent="Enemy Spawn Point" unique_id=1929496657]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.500926, 1.1650009, -8.906477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.500927, 1.1650009, -27.906477)
 
 [node name="SpawnPoint4" type="Node3D" parent="Enemy Spawn Point" unique_id=1519295354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.500926, 1.1650009, -0.6360378)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.500927, 1.1650009, -0.6360378)
 
 [node name="SpawnPoint5" type="Node3D" parent="Enemy Spawn Point" unique_id=320015340]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.500926, 1.1650009, 8.29494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.500927, 1.1650009, 28.29494)
 
 [node name="SpawnPoint6" type="Node3D" parent="Enemy Spawn Point" unique_id=63400655]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4538021, 1.1650009, 8.29494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4538021, 1.1650009, 28.29494)
 
 [node name="SpawnPoint7" type="Node3D" parent="Enemy Spawn Point" unique_id=955652294]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36611, 1.1650009, 8.29494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.36611, 1.1650009, 27.29494)
 
 [node name="SpawnPoint8" type="Node3D" parent="Enemy Spawn Point" unique_id=1592433067]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36611, 1.1650009, -0.53438854)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.36611, 1.1650009, -0.53438854)
 
 [node name="Target" type="Node3D" parent="Enemy Spawn Point" unique_id=1419391182]
 
@@ -50,8 +51,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36611, 1.1650009, -0.534388
 navigation_mesh = SubResource("NavigationMesh_3h184")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment" unique_id=78741442]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 mesh = SubResource("PlaneMesh_3h184")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1919696533]
-transform = Transform3D(-1, 8.742278e-08, 0, 3.821371e-15, 4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 14.611382, 0)
+[node name="Player" parent="." unique_id=547382021 instance=ExtResource("2_cojph")]
+RotationSpeed = 1.0
+RotationDistance = 40.0
+RotationHeight = 25.345
