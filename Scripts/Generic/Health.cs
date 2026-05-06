@@ -44,9 +44,6 @@ public partial class Health : Area3D
 
 	public void HandleHealthHitBox_Entered(Area3D area)
 	{
-		if (area is Projectile projectile) GD.Print("Honey, I fixed it! It can now parse damage: " + projectile.Damage);
-		else GD.Print("Bing");
-
 		OnDeath?.Invoke(this);
 	}
 }
