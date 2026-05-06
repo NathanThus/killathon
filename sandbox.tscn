@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://bgkf3rucm1m58"]
 
 [ext_resource type="Script" uid="uid://misco6eihy4r" path="res://Scripts/Enemy/EnemyManager.cs" id="1_3h184"]
-[ext_resource type="PackedScene" path="res://Player.tscn" id="2_cojph"]
+[ext_resource type="PackedScene" uid="uid://fer6sta33xrv" path="res://Player.tscn" id="2_cojph"]
+[ext_resource type="Script" uid="uid://c14fd48ambf5u" path="res://Scripts/Projectile/Projectile.cs" id="3_p7lbm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3h184"]
 vertices = PackedVector3Array(-29.5, 0.5, -29.5, -29.5, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, -29.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3h184"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cojph"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cojph"]
 
 [node name="Sandbox" type="Node3D" unique_id=1821652103]
 
@@ -18,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.64678
 script = ExtResource("1_3h184")
 SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
 Target = NodePath("Target")
-SpawnLimit = 500
+SpawnLimit = 2
 SpawnDelayTimeMilliSeconds = 20
 
 [node name="SpawnPoint" type="Node3D" parent="Enemy Spawn Point" unique_id=1296174047]
@@ -55,6 +60,23 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 mesh = SubResource("PlaneMesh_3h184")
 
 [node name="Player" parent="." unique_id=547382021 instance=ExtResource("2_cojph")]
-RotationSpeed = 1.0
+RotationSpeed = 0.5
 RotationDistance = 40.0
 RotationHeight = 25.345
+
+[node name="TestBox" type="Node3D" parent="." unique_id=861900810]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox" unique_id=944649976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81228375, 0)
+mesh = SubResource("BoxMesh_cojph")
+
+[node name="Area3D" type="Area3D" parent="TestBox" unique_id=875752399]
+collision_layer = 16
+collision_mask = 15
+monitoring = false
+script = ExtResource("3_p7lbm")
+Damage = 100
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox/Area3D" unique_id=687848059]
+transform = Transform3D(1.53, 0, 0, 0, 1.53, 0, 0, 0, 1.53, 0, 0.8246472, 0)
+shape = SubResource("BoxShape3D_cojph")

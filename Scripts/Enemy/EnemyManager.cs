@@ -16,10 +16,10 @@ public partial class EnemyManager : Node
 	public int SpawnDelayTimeMilliSeconds { get; set; } = 500;
 	[Export]
 	public int UpdateTimer { get; set; } = 2000;
+	public PackedScene template { get; set; } = GD.Load<PackedScene>("res://BaseEnemy.tscn");
 
 	private bool isSpawning = false;
 
-	private readonly PackedScene template = GD.Load<PackedScene>("res://BaseEnemy.tscn");
 	public override void _Ready()
 	{
 		SpawnZombie();
@@ -34,11 +34,13 @@ public partial class EnemyManager : Node
 				isSpawning = true;
 				for (int i = SpawnCount; i < SpawnLimit; i++)
 				{
-					var instance = template.Instantiate<ZombieLogic>();
+					var instance = template.Instantiate<EnemyController>();
 					AddChild(instance);
+
 					instance.Position = GetSpawnPosition();
 					instance.MovementTarget = Target.Position;
-					instance.OnDeath += HandleEnemyDeath;
+					instance.Health.OnDeath += HandleEnemyDeath;
+
 					SpawnCount++;
 					await Task.Delay(SpawnDelayTimeMilliSeconds);
 				}
@@ -57,7 +59,7 @@ public partial class EnemyManager : Node
 		return SpawnPoints[index].Position;
 	}
 
-	private void HandleEnemyDeath(ZombieLogic instance)
+	private void HandleEnemyDeath(Health instance)
 	{
 		instance.OnDeath -= HandleEnemyDeath;
 		SpawnCount--;
