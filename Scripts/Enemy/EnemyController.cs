@@ -40,7 +40,7 @@ public partial class EnemyController : CharacterBody3D
 		Body.LookAt(Vector3.Zero);
 	}
 
-	public void HandleDeath(EnemyHealth health)
+	public void HandleDeath(Health health)
 	{
 		health.OnDeath -= HandleDeath;
 		QueueFree();
