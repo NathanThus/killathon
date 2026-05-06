@@ -16,7 +16,7 @@ public partial class EnemyManager : Node
 	public int SpawnDelayTimeMilliSeconds { get; set; } = 500;
 	[Export]
 	public int UpdateTimer { get; set; } = 2000;
-	public PackedScene template {get; set;} = GD.Load<PackedScene>("res://BaseEnemy.tscn");
+	public PackedScene template { get; set; } = GD.Load<PackedScene>("res://BaseEnemy.tscn");
 
 	private bool isSpawning = false;
 
