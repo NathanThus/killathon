@@ -59,7 +59,7 @@ public partial class EnemyManager : Node
 		return SpawnPoints[index].Position;
 	}
 
-	private void HandleEnemyDeath(EnemyHealth instance)
+	private void HandleEnemyDeath(Health instance)
 	{
 		instance.OnDeath -= HandleEnemyDeath;
 		SpawnCount--;
