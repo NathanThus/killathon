@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.64678
 script = ExtResource("1_3h184")
 SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
 Target = NodePath("Target")
-SpawnLimit = 200
+SpawnLimit = 2
 SpawnDelayTimeMilliSeconds = 20
 
 [node name="SpawnPoint" type="Node3D" parent="Enemy Spawn Point" unique_id=1296174047]
@@ -75,6 +75,7 @@ collision_layer = 16
 collision_mask = 15
 monitoring = false
 script = ExtResource("3_p7lbm")
+Damage = 100
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox/Area3D" unique_id=687848059]
 transform = Transform3D(1.53, 0, 0, 0, 1.53, 0, 0, 0, 1.53, 0, 0.8246472, 0)

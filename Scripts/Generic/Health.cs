@@ -4,6 +4,8 @@ using System;
 public partial class Health : Area3D
 {
 	public event Action<Health> OnDeath;
+	public event Action OnHeal;
+	public event Action OnDamage;
 
 	[Export]
 	public int MaxHealth { get; set; } = 100;
@@ -15,6 +17,7 @@ public partial class Health : Area3D
 		if (damage <= 0) return;
 
 		CurrentHealth -= damage;
+		OnDamage?.Invoke();
 
 		if (CurrentHealth <= 0)
 		{
@@ -27,6 +30,7 @@ public partial class Health : Area3D
 	{
 		if (Health <= 0) return;
 
+		OnHeal?.Invoke();
 		if (CurrentHealth >= MaxHealth)
 		{
 			CurrentHealth = MaxHealth;
@@ -42,8 +46,8 @@ public partial class Health : Area3D
 		OnDeath = null;
 	}
 
-	public void HandleHealthHitBox_Entered(Area3D area)
+	public virtual void HandleHealthHitBox_Entered(Area3D area)
 	{
-		OnDeath?.Invoke(this);
+
 	}
 }
