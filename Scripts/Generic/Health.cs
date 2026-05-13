@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Health : Area3D
+public partial class Health : RigidBody3D
 {
 	public event Action<Health> OnDeath;
 	public event Action OnHeal;
@@ -44,10 +44,5 @@ public partial class Health : Area3D
 	public override void _ExitTree()
 	{
 		OnDeath = null;
-	}
-
-	public virtual void HandleHealthHitBox_Entered(Area3D area)
-	{
-
 	}
 }
