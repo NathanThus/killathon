@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dobqp3ca4dftl"]
+
+[ext_resource type="Script" uid="uid://c14fd48ambf5u" path="res://Scripts/Projectile/Projectile.cs" id="1_uj83q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rvmsc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p7lbm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a85iw"]
+
+[node name="Projectile" type="RigidBody3D" unique_id=1902663256]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_uj83q")
+Damage = 200
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1190889588]
+mesh = SubResource("SphereMesh_rvmsc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1197026082]
+shape = SubResource("SphereShape3D_p7lbm")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1060315831]
+collision_layer = 16
+collision_mask = 14
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=698353415]
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, 0, 0, 0)
+shape = SubResource("SphereShape3D_a85iw")
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
