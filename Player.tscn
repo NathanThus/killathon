@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dlyaqval572re" path="res://Scripts/Player Controls/PlayerController.cs" id="2_74g7g"]
 [ext_resource type="Texture2D" uid="uid://b544cpgley21j" path="res://Images/Crosshairs/crosshair148.png" id="3_e80uo"]
 [ext_resource type="Script" uid="uid://ccnlgyhkmweme" path="res://Scripts/Player Controls/MouseZoom.cs" id="3_kne1u"]
+[ext_resource type="Script" uid="uid://c78dkhmg7nqhe" path="res://Scripts/Player Controls/WeaponManager.cs" id="5_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://c4sg846uwbkjy" path="res://BaseWeapon.tscn" id="6_tdg3f"]
 
 [node name="Player" type="Node3D" unique_id=547382021 node_paths=PackedStringArray("RotationTarget", "OffsetTarget")]
 script = ExtResource("1_birkk")
@@ -54,3 +56,10 @@ texture = ExtResource("3_e80uo")
 [node name="MouseZoom" type="Node" parent="Offset/Camera Holder" unique_id=443150169 node_paths=PackedStringArray("playerCamera")]
 script = ExtResource("3_kne1u")
 playerCamera = NodePath("../Camera3D")
+
+[node name="Weapons" type="Node3D" parent="Offset/Camera Holder" unique_id=1508170572 node_paths=PackedStringArray("Weapons")]
+transform = Transform3D(0.99999976, 0, 3.3527613e-08, 0, 0.9999996, 0, -2.9802322e-08, 0, 0.99999976, 0.21472155, 0, 0.007754147)
+script = ExtResource("5_dtqjt")
+Weapons = [NodePath("")]
+
+[node name="Weapon" parent="Offset/Camera Holder/Weapons" unique_id=1286435705 instance=ExtResource("6_tdg3f")]

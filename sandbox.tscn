@@ -10,6 +10,9 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3h184"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7lbm"]
+size = Vector3(1.9962158, 0.041015625, 2.0594482)
+
 [sub_resource type="BoxMesh" id="BoxMesh_cojph"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cojph"]
@@ -23,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.64678
 script = ExtResource("1_3h184")
 SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
 Target = NodePath("Target")
-SpawnLimit = 2
+SpawnLimit = 8
 SpawnDelayTimeMilliSeconds = 20
 
 [node name="SpawnPoint" type="Node3D" parent="Enemy Spawn Point" unique_id=1296174047]
@@ -59,6 +62,12 @@ navigation_mesh = SubResource("NavigationMesh_3h184")
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 mesh = SubResource("PlaneMesh_3h184")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D" unique_id=1412189937]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/StaticBody3D" unique_id=1197210144]
+transform = Transform3D(0.99999857, 0, 0, 0, 0.99999857, 0, 0, 0, 0.99999857, 0.002014159, -0.015625156, 0.016296351)
+shape = SubResource("BoxShape3D_p7lbm")
+
 [node name="Player" parent="." unique_id=547382021 instance=ExtResource("2_cojph")]
 RotationSpeed = 0.5
 RotationDistance = 40.0
@@ -70,13 +79,14 @@ RotationHeight = 25.345
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81228375, 0)
 mesh = SubResource("BoxMesh_cojph")
 
-[node name="Area3D" type="Area3D" parent="TestBox" unique_id=875752399]
-collision_layer = 16
-collision_mask = 15
-monitoring = false
+[node name="RigidBody3D" type="RigidBody3D" parent="TestBox" unique_id=1919204862]
+disable_mode = 1
+mass = 200.0
+gravity_scale = 0.0
+freeze = true
 script = ExtResource("3_p7lbm")
-Damage = 100
+Damage = 200
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox/Area3D" unique_id=687848059]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox/RigidBody3D" unique_id=687848059]
 transform = Transform3D(1.53, 0, 0, 0, 1.53, 0, 0, 0, 1.53, 0, 0.8246472, 0)
 shape = SubResource("BoxShape3D_cojph")
