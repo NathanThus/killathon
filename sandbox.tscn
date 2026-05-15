@@ -11,7 +11,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [sub_resource type="PlaneMesh" id="PlaneMesh_3h184"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p7lbm"]
-size = Vector3(1.9962158, 0.041015625, 2.0594482)
+size = Vector3(2.0382385, 0.041015625, 2.0741577)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cojph"]
 
@@ -63,15 +63,21 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 mesh = SubResource("PlaneMesh_3h184")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D" unique_id=1412189937]
+disable_mode = 1
+collision_mask = 18
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/StaticBody3D" unique_id=1197210144]
-transform = Transform3D(0.99999857, 0, 0, 0, 0.99999857, 0, 0, 0, 0.99999857, 0.002014159, -0.015625156, 0.016296351)
+transform = Transform3D(0.99999857, 0, 0, 0, 0.99999857, 0, 0, 0, 0.99999857, 0.0035552958, -0.015625156, 0.008941624)
 shape = SubResource("BoxShape3D_p7lbm")
 
 [node name="Player" parent="." unique_id=547382021 instance=ExtResource("2_cojph")]
-RotationSpeed = 0.5
-RotationDistance = 40.0
-RotationHeight = 25.345
+RotationSpeed = 0.0
 
 [node name="TestBox" type="Node3D" parent="." unique_id=861900810]
 

@@ -13,3 +13,5 @@ _rayCast = NodePath("RayCast3D")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, -60, 0)
 collision_mask = 15
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 1, 1)
