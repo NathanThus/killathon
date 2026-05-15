@@ -11,6 +11,8 @@
 script = ExtResource("1_birkk")
 RotationTarget = NodePath(".")
 OffsetTarget = NodePath("Offset")
+RotationDistance = 25.0
+RotationHeight = 25.0
 
 [node name="Offset" type="Node3D" parent="." unique_id=2123923717]
 transform = Transform3D(0.9993489, 0, 0.036089066, 0, 0.99999994, 0, -0.03608907, 0, 0.9993488, 0, 1, 1)
@@ -53,13 +55,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_e80uo")
 
-[node name="MouseZoom" type="Node" parent="Offset/Camera Holder" unique_id=443150169 node_paths=PackedStringArray("playerCamera")]
+[node name="MouseZoom" type="Node" parent="Offset/Camera Holder/Camera3D" unique_id=443150169 node_paths=PackedStringArray("playerCamera")]
 script = ExtResource("3_kne1u")
-playerCamera = NodePath("../Camera3D")
+playerCamera = NodePath("..")
 
 [node name="Weapons" type="Node3D" parent="Offset/Camera Holder" unique_id=1508170572 node_paths=PackedStringArray("Weapons")]
-transform = Transform3D(0.99999976, 0, 3.3527613e-08, 0, 0.9999996, 0, -2.9802322e-08, 0, 0.99999976, 0.21472155, 0, 0.007754147)
+transform = Transform3D(0.99999976, 0, 4.8428774e-08, 0, 0.99999934, 0, -4.4703484e-08, 0, 0.99999976, -0.032108102, 0, -0.07756448)
 script = ExtResource("5_dtqjt")
-Weapons = [NodePath("")]
+Weapons = [null]
 
 [node name="Weapon" parent="Offset/Camera Holder/Weapons" unique_id=1286435705 instance=ExtResource("6_tdg3f")]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0)
+_desiredFlightTime = 1.0
