@@ -6,15 +6,22 @@ public partial class Projectile : RigidBody3D
 	[Export]
 	public int Damage { get; set; } = 20;
 	[Export]
-	public int AreaOfEffectMeters {get; set;} = 2;
-	
+	public ShapeCast3D ShapeCast {get; set;}
+
 	public void OnBodyEntered(Node3D node)
 	{
 		// For now, just direct fire.
-		if(node is EnemyHealth enemy)
+		if (node is EnemyHealth enemy)
 		{
-			enemy.Damage(Damage);
-			// Do spherecast and boom for all.	
+			ShapeCast.ForceShapecastUpdate();
+			if(!ShapeCast.IsColliding()) return;
+			for (int i = 0; i < ShapeCast.GetCollisionCount(); i++)
+			{
+				if(ShapeCast.GetCollider(i) is EnemyHealth enemyHealth)
+				{
+					enemyHealth.Damage(Damage);
+				}
+			}
 		}
 
 		// Probably hit something else
