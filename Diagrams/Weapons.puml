@@ -1,0 +1,107 @@
+@startuml Weapons
+Title Weapons UML
+
+enum TypeOfWeapon
+{
+    Laser,
+    Cannon,
+    Orbital,
+    Missile,
+    Rocket,
+    ...
+}
+
+abstract BaseWeapon
+{
+    + {field} int Damage
+    + {field} int RateOfFireMinute
+    + {field} int MagazineSize
+    + {field} int ReloadTimeSeconds
+    + {field} int AreaOfEffectMeters
+    + {field} PackedScene MuzzleEffect
+    + {field} PackedScene ImpactEffect
+    + {method} Fire(Vector3) : void
+}
+
+class Targeter
+{
+    + {field} Node3D OriginTransform
+    + {field} float MaximumVelocity
+    + {field} ArcStyle Style
+    + {field} float HeightMax
+    + {field} float MinimumFlightTime
+    + {field} float DesiredFlightTime
+    + {field} float MaximumFlightTime
+    + {field} Vector3 WindAcceleration
+    + {field} RayCast3D RayCast
+    + {field} Vector3 SpawnPosition
+    + {method} Vector3 CalculateVelocity(Vector3 target)
+    + {method} Vector3 CalculateVelocity(Vector3 target, Vector3 velocity)
+    + {method} float CalculateRange()
+    + {method} void SetEnviromentalParameters(float windX, float windZ)
+    + {method} Vector3 CalculatePositionAtTime(Vector3 origin, Vector3 velocity, float time)
+}
+
+note bottom of Targeter : Handles the math for getting the projectile\n to the right spot.
+
+class ProjectileWeapon <<BaseWeapon>>
+{
+    + {field} PackedScene Template;
+    + {field} Targeter Targeter
+}
+
+note bottom of ProjectileWeapon: IE: Cannons
+
+class RaycastWeapon <<BaseWeapon>>
+{
+    + {method} Fire(Vector3) : void
+}
+
+note bottom of RaycastWeapon: IE: Lasers/Orbitals
+
+class GuidedWeapon <<BaseWeapon>>
+{
+    + {field} bool IsActive
+    + {method} Fire(Vector3) : void
+    - {method} TrackMouse() : void
+}
+
+note bottom of GuidedWeapon : IE: Laser-Guided Missiles
+
+class WeaponManager
+{
+    + {event} Action OnReady;
+    + {field} WeaponConfiguration[] WeaponLoadout
+    - {method} LoadConfiguration() : void
+}
+
+class WeaponConfiguration
+{
+    + {field} int Damage;
+    + {field} int RateOfFireMinute
+    + {field} int MagazineSize
+    + {field} int ReloadTimeSeconds
+}
+
+class WeaponDataLoader
+{
+    + {method} ConvertTypeToClass(TypeOfWeapon) : BaseWeapon
+}
+
+class WeaponCustomiser
+{
+    SaveToFile(BaseWeapon weapon, Type T)
+}
+
+WeaponManager <-- BaseWeapon : 3..0
+BaseWeapon <|-- ProjectileWeapon
+Targeter <- ProjectileWeapon : 1..0
+BaseWeapon <|-- RaycastWeapon
+BaseWeapon <|-- GuidedWeapon
+WeaponConfiguration *-left- TypeOfWeapon
+WeaponManager <-right- WeaponDataLoader
+WeaponDataLoader <-down- Targeter 
+WeaponManager <-- WeaponConfiguration : 3..0
+WeaponCustomiser --> WeaponDataLoader
+
+@enduml
